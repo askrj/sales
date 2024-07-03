@@ -1,0 +1,54 @@
+@model IEnumerable<SalesWeb.Models.Departament>
+
+    @{
+        ViewData["Title"] = "Departament List";
+
+        <h2 class="text-primary" align="center" >@ViewData["Title"]</h2>
+    }
+
+      <p>
+        <a asp-action="Create" class="btn btn-secondary">Create Departament</a>
+    </p>
+
+    <table class="table table-bordered table-striped table-hover table-sm" id="myTable">
+         <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+
+                </th>
+            </tr>
+         </thead>
+         <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" placeholder="html-icon"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i></a>
+                        
+                    </td>
+                </tr>
+            }
+         </tbody>
+    </table>
+
+    @section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable(
+                {
+                    "language": {
+                        url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"
+                    },
+                });
+        });
+    </script>
+
+    }
